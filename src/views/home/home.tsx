@@ -1,19 +1,18 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, TextInput, ToastAndroid } from
+import { View, Text, StyleSheet, Image, TextInput, ToastAndroid, TouchableOpacity } from
 'react-native'
 import { RoundedButton } from '../../components/RoundedButton';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
-import { RegisterScreen } from '../register/Register';
 
 
 export const HomeScreen = () => {
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-
-    
-    const navigation =
-    useNavigation<StackNavigationProp<RootStackParamList>>();
+    const handleRegisterPress = () => {
+      navigation.navigate('RegisterScreen');
+  };
 
 
   return (
@@ -58,13 +57,16 @@ secureTextEntry={true}
 ToastAndroid.show('HOLA!', ToastAndroid.SHORT)} />
 </View>
 
+
 <View style={styles.formRegister}>
 <Text>¿No tienes cuenta?</Text>
-
-<Text style={styles.formRegisterText}> Regístrate</Text> 
+<TouchableOpacity onPress={handleRegisterPress}>
+<Text style={styles.formRegisterText}> Regístrate</Text>
+</TouchableOpacity>
 </View>
 </View>
 </View> 
+
 
 );
 }

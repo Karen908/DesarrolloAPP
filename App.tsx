@@ -28,7 +28,7 @@ export type RootStackParamList = {
   component={RegisterScreen}
   options={{
   headerShown: true,
-  title: 'Registro',
+  title: 'Register',
   }}
   />
   </Stack.Navigator>

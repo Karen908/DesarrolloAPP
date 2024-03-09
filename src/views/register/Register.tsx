@@ -6,6 +6,10 @@ import { RoundedButton } from '../../components/RoundedButton';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
 export const RegisterScreen = () => {
+
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+    
+
 return (
 <View style={styles.container}>
 <Image
