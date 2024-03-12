@@ -10,12 +10,11 @@ import { CustomTextInput } from'../../components/CustomTextInput';
 import styles from './Styles'
 export const RegisterScreen = () => {
 
-    const { name, lastname, phone, email, password, confirmPassword, onChange,
+    const { email, name, lastname, phone,image, password, confirmPassword, onChange,
         register } = useViewModel();
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
     
-
     return (
         <View style={styles.container}>
         <Image
