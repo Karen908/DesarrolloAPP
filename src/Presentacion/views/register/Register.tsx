@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet, Image, TextInput, ToastAndroid, Touchable,
-TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView,ToastAndroid } from 'react-native';
 import useViewModel from './viewModel';
 import { RoundedButton } from '../../components/RoundedButton';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -10,13 +9,18 @@ import { CustomTextInput } from'../../components/CustomTextInput';
 import styles from './Styles'
 export const RegisterScreen = () => {
 
-    const { email, name, lastname, phone,image, password, confirmPassword, onChange,
+    const { email, name, lastname, phone,image, password, confirmPassword,errorMessage, onChange,
         register } = useViewModel();
 
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-    
+    useEffect(() => {
+        if (errorMessage !== '')
+        ToastAndroid.show(errorMessage, ToastAndroid.LONG)
+        }, [errorMessage]);
+        
     return (
         <View style={styles.container}>
+            <ScrollView/>
         <Image
         source={require('../../../../assets/imagen.jpeg')}
         style={styles.imageBackground}
@@ -83,6 +87,7 @@ export const RegisterScreen = () => {
         <View style={{ marginTop: 30 }}>
         <RoundedButton text='CONFIRMAR' onPress={() => register()} />
         </View>
+        <ScrollView/>
         </View>
         </View>
         );
