@@ -1,4 +1,4 @@
-SE nodejs_base1;
+USE nodejs_base1;
 CREATE TABLE users(
 id BIGINT PRIMARY KEY AUTO_INCREMENT,
 email VARCHAR(180) NOT NULL UNIQUE,

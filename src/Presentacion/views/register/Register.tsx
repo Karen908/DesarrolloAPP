@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React,  { useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image, ScrollView,ToastAndroid } from 'react-native';
 import useViewModel from './viewModel';
@@ -11,16 +11,16 @@ export const RegisterScreen = () => {
 
     const { email, name, lastname, phone,image, password, confirmPassword,errorMessage, onChange,
         register } = useViewModel();
-
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
     useEffect(() => {
         if (errorMessage !== '')
         ToastAndroid.show(errorMessage, ToastAndroid.LONG)
         }, [errorMessage]);
-        
+
     return (
         <View style={styles.container}>
-            <ScrollView/>
+        <ScrollView/>
+
         <Image
         source={require('../../../../assets/imagen.jpeg')}
         style={styles.imageBackground}
@@ -92,4 +92,3 @@ export const RegisterScreen = () => {
         </View>
         );
         }
-        

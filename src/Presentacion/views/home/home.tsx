@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet, Image, TextInput, ToastAndroid, Touchable, TouchableOpacity } from
-'react-native'
-import useViewModel from './viewModel';
+import { View, Text, Image, TextInput, StyleSheet,ToastAndroid, TouchableOpacity } from 'react-native'
 import { RoundedButton } from '../../components/RoundedButton';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../App';
@@ -12,12 +10,17 @@ import styles from './Styles';
 
 export const HomeScreen = () => {
 
-  const {email, password, onChange} = useViewModel();
-    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const {email, password,errorMessage, onChange,login} =
+   useViewModel();
+  
+   const navigation =
+    useNavigation<StackNavigationProp<RootStackParamList>>();
 
-    const handleRegisterPress = () => {
-      navigation.navigate('RegisterScreen');
-  };
+    useEffect(() => {
+      if (errorMessage !== '') {
+      ToastAndroid.show(errorMessage, ToastAndroid.LONG);
+      }
+      }, [errorMessage]);
 
 
 return (
@@ -70,3 +73,6 @@ style={styles.formRegisterText}>Regístrate</Text>
 </View>
 );
 }
+
+
+import useViewModel from './viewModel';

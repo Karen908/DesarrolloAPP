@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { RegisterAuthUseCase } from '../../../Domain/useCases/auth/RegisterAuth';
-"../../../Domain/useCases/auth/RegisterAuth";
 
 const RegisterViewModel = () => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -18,48 +17,55 @@ const RegisterViewModel = () => {
     setValues({ ...values, [property]: value });
   };
 
-  const register = async () => {
-    if (!isValidForm()) {
-    const response = await RegisterAuthUseCase(values);
-    console.log('Result' + JSON.stringify(response));
-    }
-    }
-    const isValidForm = (): boolean => {
+  const isValidForm = () => {
     if (values.name === '') {
-    setErrorMessage('El nombre es requerido');
-    return false;
+      setErrorMessage('El nombre es requerido');
+      return false;
     }
     if (values.lastname === '') {
-    setErrorMessage('El apellido es requerido');
-    return false;
+      setErrorMessage('El apellido es requerido');
+      return false;
     }
     if (values.email === '') {
-    setErrorMessage('El correo es requerido');
-    return false;
+      setErrorMessage('El correo es requerido');
+      return false;
     }
     if (values.phone === '') {
-    setErrorMessage('El teléfono es requerido');
-    return false;
+      setErrorMessage('El teléfono es requerido');
+      return false;
     }
     if (values.password === '') {
-    setErrorMessage('La contraseña es requerida');
-    return false;
+      setErrorMessage('La contraseña es requerida');
+      return false;
     }
     if (values.confirmPassword === '') {
-    setErrorMessage('La confirmación de contraseña es requerida');
-    return false;
+      setErrorMessage('La confirmación de contraseña es requerida');
+      return false;
     }
     if (values.password !== values.confirmPassword) {
-    setErrorMessage('Las contraseñas no coinciden');
-    return false;
+      setErrorMessage('Las contraseñas no coinciden');
+      return false;
     }
     return true;
+  };
+
+  const register = async () => {
+    if (!isValidForm()) {
+      try {
+        const response = await RegisterAuthUseCase(values);
+        console.log('Result' + JSON.stringify(response));
+      } catch (error) {
+        console.log('ERROR:', error);
+      }
     }
-    return {
+  };
+
+  return {
     ...values,
     onChange,
     register,
     errorMessage
     }
-    }
-    export default RegisterViewModel;
+};
+
+export default RegisterViewModel;

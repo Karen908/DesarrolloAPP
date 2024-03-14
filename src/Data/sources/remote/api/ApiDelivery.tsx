@@ -1,6 +1,6 @@
 import axios from 'axios';
 const ApiDelivery = axios.create({
-baseURL: 'http://192.168.128.13:3007/api',
+baseURL: 'http://localhost:3007/api',
 headers: { 
 'Content-Type': 'application/json'
 }
